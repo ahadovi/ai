@@ -1,0 +1,29 @@
+{
+  "inference_type": "txt2img",
+  "model_name": "realcartoonPixar_v2.safetensors",
+  "vae_name": "color101VAE_v1.safetensors",
+  "payload": {
+    "prompt": "Flower, blue, <gender>",
+    "negative_prompt": "ugly, low resolution, disfigured, low quality, blurry, blur, nsfw, text, watermark, extra eye brew, poorly drawn face, bad, face, fused face, loned face, worst face, extra face, multiple faces, displaces face, poorly drawn dress.",
+    "seed": 1590328071,
+    "steps": 20,
+    "cfg_scale": 7.5,
+    "sampler_name": "Euler a",
+    "denoising_strength": 0.7,
+    "enable_hr": false,
+    "hr_scale": 1.2,
+    "hr_upscaler": "Latent (nearest-exact)",
+    "hr_second_pass_steps": 15,
+    "alwayson_scripts": {
+      "controlnet": {
+        "args": [
+          {
+            "module": "lineart_standard",
+            "model": "control_v11p_sd15_lineart",
+            "weight": 0.75
+          }
+        ]
+      }
+    }
+  }
+}
