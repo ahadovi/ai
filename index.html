@@ -16,304 +16,380 @@
     </style>
   </head>
   <body>
-    <div class="container bg-[#FAFAFA] px-4 my-6 min-h-screen">
-      <form
-        class="p-6 rounded-lg shadow-md bg-white max-w-[576px] min-w-[400px]"
-        id="submitForm"
-        method="post"
-      >
-        <div class="mb-3">
-          <label for="inference_type" class="block font-medium mb-2 text-xl"
-            >Interface Type</label
+    <div class="bg-[#FAFAFA] min-h-screen py-8">
+      <div class="container mx-auto px-4">
+        <div class="flex gap-6 items-start">
+          <form
+            class="p-6 rounded-lg shadow-md bg-white w-full md:w-3/5"
+            id="submitForm"
+            method="post"
           >
-          <select
-            name="inference_type"
-            id="inference_type"
-            class="w-full border-2 border-gray-400 px-3 py-2 rounded"
-          >
-            <option value="txt2img">txt2img</option>
-            <option value="img2img">img2img</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="model_name" class="block font-medium mb-2 text-xl"
-            >Model Name</label
-          >
-          <select
-            name="model_name"
-            id="model_name"
-            class="w-full border-2 border-gray-400 px-3 py-2 rounded"
-          >
-            <option value="Deliberate_v2">Deliberate_v2</option>
-            <option value="aZovyaRPGArtistTools_v4VAE">
-              aZovyaRPGArtistTools_v4VAE
-            </option>
-            <option value="dreamshaper_332BakedVaeClipFix">
-              dreamshaper_332BakedVaeClipFix
-            </option>
-            <option value="disneyPixarCartoon_v10">
-              disneyPixarCartoon_v10
-            </option>
-            <option value="Realistic_Vision_V5.1">Realistic_Vision_V5.1</option>
-            <option value="realcartoonPixar_v2">realcartoonPixar_v2</option>
-            <option value="dreamshaper_8">dreamshaper_8</option>
-            <option value="realcartoon3d_v12">realcartoon3d_v12</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="model_name" class="block font-medium mb-2 text-xl"
-            >Vae Name</label
-          >
-          <select
-            name="vae_name"
-            id="vae_name"
-            class="w-full border-2 border-gray-400 px-3 py-2 rounded"
-          >
-            <option value="color101VAE_v1.safetensors">
-              color101VAE_v1.safetensors
-            </option>
-            <option value="color101VAE_v1.safetensors">
-              color101VAE_v1.safetensors
-            </option>
-            <option value="color101VAE_v1.safetensors">
-              color101VAE_v1.safetensors
-            </option>
-            <option value="vae-ft-mse-840000-ema-pruned_fp16.safetensors">
-              vae-ft-mse-840000-ema-pruned_fp16.safetensors
-            </option>
-            <option value="kl-f8-anime2_fp16.safetensors">
-              kl-f8-anime2_fp16.safetensors
-            </option>
-          </select>
-        </div>
+            <div class="flex item-center gap-x-3 w-full">
+              <div class="mb-3 md:w-1/2">
+                <label
+                  for="inference_type"
+                  class="block font-medium mb-2 text-xl"
+                  >Interface Type</label
+                >
+                <select
+                  name="inference_type"
+                  id="inference_type"
+                  class="w-full border-2 border-gray-400 px-3 py-2 rounded"
+                >
+                  <option value="txt2img">txt2img</option>
+                  <option value="img2img">img2img</option>
+                </select>
+              </div>
+              <div class="mb-3 md:w-1/2">
+                <label for="model_name" class="block font-medium mb-2 text-xl"
+                  >Model Name</label
+                >
+                <select
+                  name="model_name"
+                  id="model_name"
+                  class="w-full border-2 border-gray-400 px-3 py-2 rounded"
+                >
+                  <option value="Deliberate_v2">Deliberate_v2</option>
+                  <option value="aZovyaRPGArtistTools_v4VAE">
+                    aZovyaRPGArtistTools_v4VAE
+                  </option>
+                  <option value="dreamshaper_332BakedVaeClipFix">
+                    dreamshaper_332BakedVaeClipFix
+                  </option>
+                  <option value="disneyPixarCartoon_v10">
+                    disneyPixarCartoon_v10
+                  </option>
+                  <option value="Realistic_Vision_V5.1">
+                    Realistic_Vision_V5.1
+                  </option>
+                  <option value="realcartoonPixar_v2">
+                    realcartoonPixar_v2
+                  </option>
+                  <option value="dreamshaper_8">dreamshaper_8</option>
+                  <option value="realcartoon3d_v12">realcartoon3d_v12</option>
+                </select>
+              </div>
+            </div>
 
-        <div class="mb-3">
-          <label for="name" class="block font-medium mb-2 text-xl"
-            >Prompt</label
-          >
-          <input
-            required
-            type="text"
-            placeholder="Enter prompt"
-            id="prompt"
-            name="prompt"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="Flower, blue, <gender>"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="name" class="block font-medium mb-2 text-xl"
-            >Negative Prompt</label
-          >
-          <textarea
-            required
-            type="text"
-            placeholder="Enter negative prompt"
-            id="negative_prompt"
-            name="negative_prompt"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded min-h-[120px]"
-          >ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermark, extra eye brew, poorly drawn face, bad,face, fused face, loned face, worst face, extra face, multiple faces,displaces face, poorly drawn dress.
-        </textarea>
-        </div>
-        <div class="mb-3">
-          <label for="seed" class="block font-medium mb-2 text-xl">Seed</label>
-          <input
-            type="number"
-            placeholder="Enter seed"
-            id="seed"
-            name="seed"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="1590328071"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="steps" class="block font-medium mb-2 text-xl"
-            >Steps</label
-          >
-          <input
-            type="number"
-            placeholder="Enter steps"
-            id="steps"
-            name="steps"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="20"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="cfg_scale" class="block font-medium mb-2 text-xl"
-            >Cfg Scale</label
-          >
-          <input
-            type="number"
-            placeholder="Enter cfg scale"
-            id="cfg_scale"
-            name="cfg_scale"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="7.5"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="cfg_scale" class="block font-medium mb-2 text-xl"
-            >Sampler Name</label
-          >
-          <input
-            required
-            type="text"
-            placeholder="Enter sampler name"
-            id="sampler_name"
-            name="sampler_name"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="Euler a"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="denoising_strength" class="block font-medium mb-2 text-xl"
-            >Denoising Strength</label
-          >
-          <input
-            type="number"
-            placeholder="Enter Denoising Strength"
-            id="denoising_strength"
-            name="denoising_strength"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="0.7"
-          />
-          
-        </div>
+            <div class="mb-3">
+              <label for="model_name" class="block font-medium mb-2 text-xl"
+                >Vae Name</label
+              >
+              <select
+                name="vae_name"
+                id="vae_name"
+                class="w-full border-2 border-gray-400 px-3 py-2 rounded"
+              >
+                <option value="color101VAE_v1.safetensors">
+                  color101VAE_v1.safetensors
+                </option>
+                <option value="color101VAE_v1.safetensors">
+                  color101VAE_v1.safetensors
+                </option>
+                <option value="color101VAE_v1.safetensors">
+                  color101VAE_v1.safetensors
+                </option>
+                <option value="vae-ft-mse-840000-ema-pruned_fp16.safetensors">
+                  vae-ft-mse-840000-ema-pruned_fp16.safetensors
+                </option>
+                <option value="kl-f8-anime2_fp16.safetensors">
+                  kl-f8-anime2_fp16.safetensors
+                </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="name" class="block font-medium mb-2 text-xl"
+                >Prompt</label
+              >
+              <input
+                required
+                type="text"
+                placeholder="Enter prompt"
+                id="prompt"
+                name="prompt"
+                class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                value="Flower, blue, <gender>"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="name" class="block font-medium mb-2 text-xl"
+                >Negative Prompt</label
+              >
+              <textarea
+                required
+                type="text"
+                placeholder="Enter negative prompt"
+                id="negative_prompt"
+                name="negative_prompt"
+                class="w-full border-2 border-gray-400 px-3 py-1.5 rounded min-h-[120px]"
+              >
+ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermark, extra eye brew, poorly drawn face, bad,face, fused face, loned face, worst face, extra face, multiple faces,displaces face, poorly drawn dress.
+          </textarea
+              >
+            </div>
+            <div class="flex item-center gap-x-3 w-full">
+              <div class="mb-3 md:w-1/2">
+                <label for="seed" class="block font-medium mb-2 text-xl"
+                  >Seed</label
+                >
+                <input
+                  required
+                  type="number"
+                  placeholder="Enter seed"
+                  id="seed"
+                  name="seed"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="1590328071"
+                  step="any"
+                />
+              </div>
+              <div class="mb-3 md:w-1/2">
+                <label for="steps" class="block font-medium mb-2 text-xl"
+                  >Steps</label
+                >
+                <input
+                  required
+                  type="number"
+                  placeholder="Enter steps"
+                  id="steps"
+                  name="steps"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="20"
+                  step="any"
+                />
+              </div>
+            </div>
 
-        <div class="my-5 flex items-center gap-x-5">
-          <label
-            for="enable_hr"
-            class="block font-medium mb-2 text-xl mb-[0!important]"
-            >Enable Hr:
-          </label>
-          <input
-            required
-            checked
-            type="checkbox"
-            id="enable_hr"
-            name="enable_hr"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded flex-[0_0_24px] w-6 h-6"
-          />
-        </div>
+            <div class="flex item-center gap-x-3 w-full">
+              <div class="mb-3 md:w-1/2">
+                <label for="cfg_scale" class="block font-medium mb-2 text-xl"
+                  >Cfg Scale</label
+                >
+                <input
+                  required
+                  type="number"
+                  placeholder="Enter cfg scale"
+                  id="cfg_scale"
+                  name="cfg_scale"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="7.5"
+                  step="any"
+                />
+              </div>
+              <div class="mb-3 md:w-1/2">
+                <label for="cfg_scale" class="block font-medium mb-2 text-xl"
+                  >Sampler Name</label
+                >
+                <input
+                  required
+                  type="text"
+                  placeholder="Enter sampler name"
+                  id="sampler_name"
+                  name="sampler_name"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="Euler a"
+                />
+              </div>
+            </div>
 
-        <div class="mb-3">
-          <label for="hr_scale" class="block font-medium mb-2 text-xl"
-            >Hr Scale</label
-          >
-          <input
-            
-            type="number"
-            placeholder="Enter hr scale"
-            id="hr_scale"
-            name="hr_scale"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="1.2"
-          />
-        </div>
+            <div class="flex item-center gap-x-3 w-full">
+              <div class="mb-3 md:w-1/2">
+                <label
+                  for="denoising_strength"
+                  class="block font-medium mb-2 text-xl"
+                  >Denoising Strength</label
+                >
+                <input
+                  required
+                  type="number"
+                  placeholder="Enter Denoising Strength"
+                  id="denoising_strength"
+                  name="denoising_strength"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="0.7"
+                  step="any"
+                />
+              </div>
 
-        <div class="mb-3">
-          <label for="hr_upscaler" class="block font-medium mb-2 text-xl"
-            >Hr Upscaler</label
-          >
-          <input
-            required
-            type="text"
-            placeholder="Enter hr upscaler"
-            id="hr_upscaler"
-            name="hr_upscaler"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="Latent (nearest-exact)"
-          />
-        </div>
+              <div class="mb-3 md:w-1/2">
+                <label for="hr_scale" class="block font-medium mb-2 text-xl"
+                  >Hr Scale</label
+                >
+                <input
+                  required
+                  type="number"
+                  placeholder="Enter hr scale"
+                  id="hr_scale"
+                  name="hr_scale"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="1.2"
+                  step="any"
+                />
+              </div>
+            </div>
 
-        <div class="mb-3">
-          <label
-            for="hr_second_pass_steps"
-            class="block font-medium mb-2 text-xl"
-            >Hr Second Pass Steps</label
-          >
-          <input
-            type="number"
-            placeholder="Enter hr second pass steps"
-            id="hr_second_pass_steps"
-            name="hr_second_pass_steps"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="15"
-          />
-        </div>
+            <div class="flex item-center gap-x-3 w-full">
+              <div class="mb-3 md:w-1/2">
+                <label for="hr_upscaler" class="block font-medium mb-2 text-xl"
+                  >Hr Upscaler</label
+                >
+                <input
+                  required
+                  type="text"
+                  placeholder="Enter hr upscaler"
+                  id="hr_upscaler"
+                  name="hr_upscaler"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="Latent (nearest-exact)"
+                />
+              </div>
 
-        <div class="mb-3">
-          <label for="module" class="block font-medium mb-2 text-xl"
-            >Module</label
-          >
-          <select
-            name="module"
-            id="module"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-          >
-            <option value="Tile_Resample">Tile Resample</option>
-            <option value="lineart_realistic">Lineart Realistic</option>
-            <option value="scribble_xdog">Scribble Xdog</option>
-            <option value="lineart_standard">Lineart Standard</option>
-            <option value="lineart_coarse">Lineart Coarse</option>
-            <option value="Canny">Canny</option>
-          </select>
-        </div>
+              <div class="mb-3 md:w-1/2">
+                <label
+                  for="hr_second_pass_steps"
+                  class="block font-medium mb-2 text-xl"
+                  >Hr Second Pass Steps</label
+                >
+                <input
+                  required
+                  type="number"
+                  placeholder="Enter hr second pass steps"
+                  id="hr_second_pass_steps"
+                  name="hr_second_pass_steps"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="15"
+                  step="any"
+                />
+              </div>
+            </div>
 
-        <div class="mb-3">
-          <label for="model" class="block font-medium mb-2 text-xl"
-            >Model</label
-          >
-          <select
-            name="model"
-            id="model"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-          >
-            <option value="control_v11f1e_sd15_tile">
-              Control v11f1e sd15 tile
-            </option>
-            <option value="control_v11p_sd15_lineart">
-              Control v11p sd15 lineart
-            </option>
-            <option value="control_v11p_sd15_scribble">
-              Control v11p sd15 scribble
-            </option>
-            <option value="control_v11p_sd15_lineart">
-              Control v11p sd15 lineart
-            </option>
-            <option value="control_v11p_sd15_lineart">
-              Control v11p sd15 lineart
-            </option>
-            <option value="control_v11p_sd15_canny">
-              Control v11p sd15 canny
-            </option>
-          </select>
-        </div>
+            <div class="flex item-center gap-x-3 w-full">
+              <div class="mb-3 md:w-1/2">
+                <label for="module" class="block font-medium mb-2 text-xl"
+                  >Module</label
+                >
+                <select
+                  name="module"
+                  id="module"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                >
+                  <option value="Tile_Resample">Tile Resample</option>
+                  <option value="lineart_realistic">Lineart Realistic</option>
+                  <option value="scribble_xdog">Scribble Xdog</option>
+                  <option value="lineart_standard">Lineart Standard</option>
+                  <option value="lineart_coarse">Lineart Coarse</option>
+                  <option value="Canny">Canny</option>
+                </select>
+              </div>
 
-        <div class="mb-3">
-          <label for="weight" class="block font-medium mb-2 text-xl"
-            >Weight</label
-          >
-          <input
-            type="number"
-            placeholder="Enter weight"
-            id="weight"
-            name="weight"
-            class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
-            value="0.75"
-          />
-        </div>
+              <div class="mb-3 md:w-1/2">
+                <label for="model" class="block font-medium mb-2 text-xl"
+                  >Model</label
+                >
+                <select
+                  name="model"
+                  id="model"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                >
+                  <option value="control_v11f1e_sd15_tile">
+                    Control v11f1e sd15 tile
+                  </option>
+                  <option value="control_v11p_sd15_lineart">
+                    Control v11p sd15 lineart
+                  </option>
+                  <option value="control_v11p_sd15_scribble">
+                    Control v11p sd15 scribble
+                  </option>
+                  <option value="control_v11p_sd15_lineart">
+                    Control v11p sd15 lineart
+                  </option>
+                  <option value="control_v11p_sd15_lineart">
+                    Control v11p sd15 lineart
+                  </option>
+                  <option value="control_v11p_sd15_canny">
+                    Control v11p sd15 canny
+                  </option>
+                </select>
+              </div>
+            </div>
 
-        <button
-          type="submit"
-          id="submitBtn"
-          class="bg-slate-800 px-4 py-2 rounded text-white mt-4"
-        >
-          Genarate Json
-        </input>
-      </form>
+            <div class="flex item-center gap-x-3 w-full item-center">
+              <div class="mb-3 md:w-1/2">
+                <label for="weight" class="block font-medium mb-2 text-xl"
+                  >Weight</label
+                >
+                <input
+                  required
+                  type="number"
+                  placeholder="Enter weight"
+                  id="weight"
+                  name="weight"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                  value="0.75"
+                  step="any"
+                />
+              </div>
+
+              <div class="mt-6 flex items-center gap-x-5 md:w-1/2">
+                <label
+                  for="enable_hr"
+                  class="block font-medium mb-2 text-xl mb-[0!important]"
+                  >Enable Hr:
+                </label>
+                <input
+                  required
+                  checked
+                  type="checkbox"
+                  id="enable_hr"
+                  name="enable_hr"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded flex-[0_0_24px] w-6 h-6"
+                />
+              </div>
+            </div>
+            <div class="mt-5">
+              <div class="mb-6 md:w-1/2">
+                <img
+                  src="https://placehold.co/400x400"
+                  alt="Upload Preview Image"
+                  id="previewImage"
+                  class="max-w-full h-auto"
+                />
+              </div>
+              <div class="mb-3 md:w-1/2">
+                <label for="images" class="block font-medium mb-2 text-xl"
+                  >Select Image</label
+                >
+                <input
+                  required
+                  type="file"
+                  accept="image/*"
+                  id="images"
+                  name="images"
+                  class="w-full border-2 border-gray-400 px-3 py-1.5 rounded"
+                />
+              </div>
+            </div>
+
+            <div class="w-full text-right mt-8">
+              <button
+                type="submit"
+                id="submitBtn"
+                class="bg-slate-800 px-5 py-3 rounded text-white font-medium w-1/4 text-xl"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+          <div class="p-6 rounded-lg shadow-md bg-white md:w-2/5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Necessitatibus, nulla aliquid. Quod accusamus debitis ipsum quam aut
+            exercitationem tempore voluptate! Animi sunt exercitationem sed
+            maxime! Asperiores doloribus ut quia vel.
+          </div>
+        </div>
+      </div>
     </div>
+
     <script src="./app.js"></script>
   </body>
 </html>
