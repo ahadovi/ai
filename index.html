@@ -18,13 +18,13 @@
   <body>
     <div class="bg-[#FAFAFA] min-h-screen py-8">
       <div class="container mx-auto px-4">
-        <div class="flex gap-6 items-start">
+        <div class="md:flex md:gap-6 md:items-start">
           <form
             class="p-6 rounded-lg shadow-md bg-white w-full md:w-3/5"
             id="submitForm"
             method="post"
           >
-            <div class="flex item-center gap-x-3 w-full">
+            <div class="md:flex item-center gap-x-3 w-full">
               <div class="mb-3 md:w-1/2">
                 <label
                   for="inference_type"
@@ -127,7 +127,7 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
           </textarea
               >
             </div>
-            <div class="flex item-center gap-x-3 w-full">
+            <div class="md:flex item-center gap-x-3 w-full">
               <div class="mb-3 md:w-1/2">
                 <label for="seed" class="block font-medium mb-2 text-xl"
                   >Seed</label
@@ -160,7 +160,7 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
               </div>
             </div>
 
-            <div class="flex item-center gap-x-3 w-full">
+            <div class="md:flex item-center gap-x-3 w-full">
               <div class="mb-3 md:w-1/2">
                 <label for="cfg_scale" class="block font-medium mb-2 text-xl"
                   >Cfg Scale</label
@@ -192,7 +192,7 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
               </div>
             </div>
 
-            <div class="flex item-center gap-x-3 w-full">
+            <div class="md:flex item-center gap-x-3 w-full">
               <div class="mb-3 md:w-1/2">
                 <label
                   for="denoising_strength"
@@ -228,7 +228,7 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
               </div>
             </div>
 
-            <div class="flex item-center gap-x-3 w-full">
+            <div class="md:flex item-center gap-x-3 w-full">
               <div class="mb-3 md:w-1/2">
                 <label for="hr_upscaler" class="block font-medium mb-2 text-xl"
                   >Hr Upscaler</label
@@ -263,7 +263,7 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
               </div>
             </div>
 
-            <div class="flex item-center gap-x-3 w-full">
+            <div class="md:flex item-center gap-x-3 w-full">
               <div class="mb-3 md:w-1/2">
                 <label for="module" class="block font-medium mb-2 text-xl"
                   >Module</label
@@ -313,7 +313,7 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
               </div>
             </div>
 
-            <div class="flex item-center gap-x-3 w-full item-center">
+            <div class="md:flex item-center gap-x-3 w-full item-center">
               <div class="mb-3 md:w-1/2">
                 <label for="weight" class="block font-medium mb-2 text-xl"
                   >Weight</label
@@ -337,8 +337,6 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
                   >Enable Hr:
                 </label>
                 <input
-                  required
-                  checked
                   type="checkbox"
                   id="enable_hr"
                   name="enable_hr"
@@ -352,7 +350,8 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
                   src="https://placehold.co/400x400"
                   alt="Upload Preview Image"
                   id="previewImage"
-                  class="max-w-full h-auto"
+                  class="max-w-full h-auto max-h-[400px]"
+                  crossorigin="anonymous"
                 />
               </div>
               <div class="mb-3 md:w-1/2">
@@ -374,17 +373,20 @@ ugly, low resolution, disfigured, low quality,blurry, blur, nsfw, text, watermar
               <button
                 type="submit"
                 id="submitBtn"
-                class="bg-slate-800 px-5 py-3 rounded text-white font-medium w-1/4 text-xl"
+                class="bg-slate-800 px-5 py-3 rounded text-white font-medium md:w-1/4 text-xl disabled:bg-slate-600"
               >
                 Submit
               </button>
             </div>
           </form>
-          <div class="p-6 rounded-lg shadow-md bg-white md:w-2/5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Necessitatibus, nulla aliquid. Quod accusamus debitis ipsum quam aut
-            exercitationem tempore voluptate! Animi sunt exercitationem sed
-            maxime! Asperiores doloribus ut quia vel.
+          <div class="p-6 rounded-lg shadow-md bg-white my-6 md:mt-0 md:w-2/5">
+            <h3 class="text-xl mb-3">Response Image Preview</h3>
+            <img
+              src="https://placehold.co/500x500"
+              alt="response image"
+              id="responseImage"
+              class="max-w-full h-auto max-h-[600px] rounded"
+            />
           </div>
         </div>
       </div>

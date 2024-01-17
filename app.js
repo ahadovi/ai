@@ -56,6 +56,7 @@ let controlnetArr = ['module', 'model', 'weight'];
 
 //= Image segment ui
 let inputImage;
+let responseImage = document.getElementById('responseImage');
 let previewImage = document.getElementById('previewImage');
 let fileInput = document.getElementById('images');
 
@@ -77,44 +78,62 @@ function handleInputChange(event) {
       if(controlnetArr.includes(event.target.name)) {
           values.payload.alwayson_scripts.controlnet.args[0][name] = value;
       }
-      values.payload[name] = type === 'checkbox' ? checked : value;
+      if(name === "enable_hr"){
+        values.payload[name] = type === 'checkbox' ? checked : value;
+      }
   } else {
       values[name] = value;
   }
 };
-  
+
 inputSelectors.forEach((selector) => {
   const element = document.getElementById(selector);
   element.addEventListener('change', handleInputChange);
 });
-  
-let submitForm = document.getElementById('submitForm');
 
-submitForm.addEventListener('submit', (e) => {
+let submitForm = document.getElementById('submitForm');
+let submitBtn = document.getElementById('submitBtn');
+
+submitForm.addEventListener('submit', async(e) => {
   e.preventDefault();
+  submitBtn.disabled = true;
   console.log('Submitted values:', values);
 
-  const jsonString = JSON.stringify(values, null, 2); // The third argument (2) specifies the number of spaces for indentation.
+  const jsonString = JSON.stringify(values, null, 2);
   const blob = new Blob([jsonString], { type: 'application/json' });
 
   const formData = new FormData();
-  formData.append('json', blob, 'sample.json');
-  console.log(inputImage);
-  formData.append('image', inputImage);
+  formData.append('json_data', blob, 'sample_json_file.json');
+  if(inputImage) {
+    formData.append('image', inputImage);
+  }
 
-  // fetch('http://localhost:5005/', {
-  //   method: 'POST',
-  //   body: formData
-  // })
-  // .then(response => response.text())
-  // .then(data => {
-  //   alert(data);
-  // })
-  // .catch(error => {
-  //   console.error('Error:', error);
-  // });
+
+  try {
+    const response = await fetch('http://127.0.0.1:5005', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+      //= After Success UI Block
+    submitBtn.disabled = false;
+    responseImage.src = `${data['Download link'][0]}`;
+    window.scroll({top:0, behavior: "smooth"})
+    } else {
+      alert(response.statusText)
+      submitBtn.disabled = false;
+      console.error('Error:', response.statusText);
+    }
+  } catch(error) {
+    console.error('Error:', error);
+  }
 });
-
 
 
 
